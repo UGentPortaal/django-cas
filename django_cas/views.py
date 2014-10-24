@@ -119,7 +119,7 @@ def login(request, next_page=None, required=False, gateway=False):
 
     if ticket:
         from django.contrib import auth
-        user = auth.authenticate(ticket=ticket, service=service)
+        user = auth.authenticate(ticket=ticket, service=service, request=request)
 
         if user is not None:
             #Has ticket, logs in fine
