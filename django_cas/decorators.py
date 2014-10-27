@@ -62,12 +62,14 @@ def gateway():
 
             from django_cas.views import login
             request = args[0]
-            
+
             if request.user.is_authenticated():
                 #Is Authed, fine
                 pass
             else:
-                path_with_params = request.path + '?' + urlencode(request.GET.copy())
+                path_with_params = request.path + '?' + urlencode({
+                    k: v.encode("utf-8") for (k, v) in request.GET.items()
+                })
                 if request.GET.get('ticket'):
                     #Not Authed, but have a ticket!
                     #Try to authenticate
@@ -80,7 +82,7 @@ def gateway():
                     else:
                         #Not Authed, try to authenticate
                         return login(request, path_with_params, False, True)
-                
+
             return func(*args)
         return wrapped_f
     return wrap
