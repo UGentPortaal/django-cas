@@ -35,6 +35,7 @@ def _service_url(request, redirect_to=None, gateway=False):
             """ If gateway, capture params and reencode them before returning a url """
             gateway_params = [(REDIRECT_FIELD_NAME, redirect_to), ('gatewayed','true')]
             query_dict = request.GET.copy()
+            query_dict =  {k: v.encode("utf-8") for (k, v) in request.GET.items()}
             try:
                 del query_dict['ticket']
             except:
