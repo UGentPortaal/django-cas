@@ -58,7 +58,7 @@ def gateway():
     if settings.CAS_GATEWAY == False:
         raise ImproperlyConfigured('CAS_GATEWAY must be set to True')
     def wrap(func):
-        def wrapped_f(*args):
+        def wrapped_f(*args, **kwargs):
 
             from django_cas.views import login
             request = args[0]
@@ -83,6 +83,6 @@ def gateway():
                         #Not Authed, try to authenticate
                         return login(request, path_with_params, False, True)
 
-            return func(*args)
+            return func(*args, **kwargs)
         return wrapped_f
     return wrap
