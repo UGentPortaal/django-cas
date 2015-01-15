@@ -184,16 +184,22 @@ class CASBackend(object):
         """Verifies CAS ticket and gets or creates User object"""
 
         username, attributes = _verify(ticket, service)
-        print username
         if attributes:
             request.session['attributes'] = attributes
         if not username:
             return None
+        
+        last_name = attributes.get('surname', '')
+        first_name = attributes.get('givenname', '')
+        email = attributes.get('mail', '')
+        
         try:
             user = User.objects.get(username=username)
         except User.DoesNotExist:
             # user will have an "unusable" password
-            user = User.objects.create_user(username, '')
+            user = User.objects.create_user(username, email, '')
+            user.first_name = first_name
+            user.last_name = last_name
             user.save()
         return user
 
