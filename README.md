@@ -1,12 +1,7 @@
-# django-cas-sso
+# django-cas-ugent
 
-CAS client for Django.  This is K-State&#39;s fork of the original, which lives at
-https://bitbucket.org/cpcc/django-cas/overview.  This fork is actively maintaned and 
-includes several new features.
-
-Current version: 0.8.5
-
-https://github.com/kstateome/django-cas
+CAS client for Django.  This UGentPortaalteam&#39;s fork of K-State&#39;s fork of the original,
+which lives at https://bitbucket.org/cpcc/django-cas/overview.
 
 
 ## Install
