@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-version = '1.1.5'
+version = '1.1.6'
 
 def recursive_requirements(requirement_file, libs, links, path=''):
     if not requirement_file.startswith(path):
@@ -24,7 +24,7 @@ def recursive_requirements(requirement_file, libs, links, path=''):
 libraries, dependency_links = [], []
 recursive_requirements('requirements.txt', libraries, dependency_links)
 
-setup(name='django-cas-sso',
+setup(name='django-cas-ugent',
       version=version,
       install_requires=libraries,
       dependency_links=dependency_links,
@@ -46,8 +46,7 @@ setup(name='django-cas-sso',
       author_email='di-dip@unistra.fr',
       maintainer='di-dip-unistra',
       maintainer_email='di-dip@unistra.fr',
-      url='http://github.com/unistra/django-cas/',
-      download_url='http://pypi.python.org/pypi/django-cas-sso',
+      url='https://github.com/UGentPortaal/django-cas-ugent',
       license='MIT',
       entry_points={},
       packages=find_packages(),
