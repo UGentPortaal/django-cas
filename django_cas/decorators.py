@@ -76,7 +76,7 @@ def gateway():
                     return login(request, path_with_params, False, True)
                 else:
                     #Not Authed, but no ticket
-                    gatewayed = request.GET.get('gatewayed')
+                    gatewayed = request.GET.get('gatewayed', 'true')
                     if gatewayed == 'true':
                         pass
                     else:
