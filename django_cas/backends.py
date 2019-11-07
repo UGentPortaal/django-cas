@@ -53,8 +53,8 @@ def _verify_cas2(ticket, service):
 
     page = urlopen(url)
     try:
-        response = page.read()
-        tree = ElementTree.fromstring(response)
+        response = page.readlines()
+        tree = ElementTree.fromstringlist(response)
 
         #Useful for debugging
         #from xml.dom.minidom import parseString
@@ -91,8 +91,8 @@ def verify_proxy_ticket(ticket, service):
     page = urlopen(url)
 
     try:
-        response = page.read()
-        tree = ElementTree.fromstring(response)
+        response = page.readlines()
+        tree = ElementTree.fromstringlist(response)
         if tree[0].tag.endswith('authenticationSuccess'):
             username = tree[0][0].text
             proxies = []
@@ -145,8 +145,8 @@ def _verify_cas2_saml(ticket, service):
     try:
         user = None
         attributes = {}
-        response = page.read()
-        tree = ElementTree.fromstring(response)
+        response = page.readlines()
+        tree = ElementTree.fromstringlist(response)
         # Find the authentication status
         success = tree.find('.//' + SAML_1_0_PROTOCOL_NS + 'StatusCode')
         if success is not None and success.attrib['Value'] == 'samlp:Success':
